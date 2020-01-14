@@ -1,0 +1,16 @@
+.nav {
+  height: 30px;
+  background-color: #d8d8d8;
+  border: 1px solid #aeaeae;
+  padding: 5px 10px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  margin: 5px;
+  border-right: 1px solid #d8d8d8;
+}

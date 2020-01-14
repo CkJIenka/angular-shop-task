@@ -1,0 +1,33 @@
+<h3>Корзина <i>{{ amount }}</i></h3>
+
+<div *ngFor="let item of items">
+  <span>{{ item.name }}</span>
+  <span>{{ item.price+' руб'  }}</span>
+  <input type="number"  value="1" min="1">
+  <button (click)="addToWishlist(item)">В избранное</button>
+  <button (click)="deleteFromCart(item.id)">Удалить</button>
+</div>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+  <fieldset>
+    <label for="name">ФИО:</label>
+    <input type="text" formControlName="name" id="name" placeholder="Введите Ваше ФИО" required>
+  </fieldset>
+  <fieldset>
+    <label for="phone">Номер телефона:</label>
+    <input type="text" formControlName="phone" id="phone" placeholder="+7 (XXX) XXX-XX-XX" pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}" required>
+  </fieldset>
+  <fieldset>
+    <label for="email">Email:</label>
+    <input type="email" formControlName="email" id="email" required>
+  </fieldset>
+  <fieldset>
+    <label for="address">Адрес доставки:</label>
+    <input type="text" formControlName="address" id="adress" required>
+  </fieldset>
+  <fieldset>
+    <label for="comment">Комментарии:</label>
+    <textarea id="comment" formControlName="comment"></textarea>
+  </fieldset>
+  <button type="submit" class="submit">Оформить заказ</button>
+</form>

@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+h3 {
+  margin-left: 10px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+
+.product-item {
+  text-align: center;
+}
+
+button {
+  background-color: #d8d8d8;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #aeaeae;
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #aeaeae;
+}
+
+button:active {
+  opacity: 0.5;
+}
+
+/* button:before {
+  content: "";
+  display: block;
+  background: url('/assets/images/shopicon.png') no-repeat;
+  width: 40px;
+  height: 35px;
+  float: left;
+} */

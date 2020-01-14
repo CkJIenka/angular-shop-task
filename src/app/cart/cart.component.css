@@ -1,0 +1,57 @@
+div {
+  width: 100%;
+  min-width: 400px;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px 32px;
+  margin-bottom: 8px;
+  margin-left: 10px;
+  border-radius: 2px;
+  background-color: #EEEEEE;
+  align-items: center;
+}
+
+div input {
+  width: 40px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+form {
+  border: 1px solid #aeaeae;
+  border-radius: 10px;
+  background-color: #d8d8d8;
+  padding: 10px;
+  width: 1000px;
+}
+
+fieldset {
+  border: none;
+  width: 800px;
+  font-weight: bold;
+}
+
+fieldset input,
+fieldset textarea {
+  width: 600px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  float: right;
+}
+
+.submit {
+  position: relative;
+  left: 40%;
+}
+
+label {
+  margin-top: 8px;
+  float: left;
+}
