@@ -6,6 +6,9 @@ import { HttpClientModule }    from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 // import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { MatDialogModule } from "@angular/material";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +16,7 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { WishListComponent } from './wish-list/wish-list.component';
-
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
     ProductListComponent,
     CartComponent,
     WishListComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +40,11 @@ import { WishListComponent } from './wish-list/wish-list.component';
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [DialogComponent],
 })
 export class AppModule { }

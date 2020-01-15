@@ -21,5 +21,4 @@ export class TopbarComponent implements OnInit {
   recountWishlistAmount(count) {
     this.amountWishlist+=count;
   }
-
 }

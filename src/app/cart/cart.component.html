@@ -8,10 +8,10 @@
   <button (click)="deleteFromCart(item.id)">Удалить</button>
 </div>
 
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <fieldset>
     <label for="name">ФИО:</label>
-    <input type="text" formControlName="name" id="name" placeholder="Введите Ваше ФИО" required>
+    <input type="text" formControlName="name" id="name" required>
   </fieldset>
   <fieldset>
     <label for="phone">Номер телефона:</label>

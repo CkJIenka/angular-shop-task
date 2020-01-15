@@ -55,3 +55,7 @@ label {
   margin-top: 8px;
   float: left;
 }
+
+input.ng-touched.ng-invalid{
+ border-color: red;
+}

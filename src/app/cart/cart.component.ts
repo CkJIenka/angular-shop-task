@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { CartService } from '../cart.service';
 import { WishlistService } from '../wishlist.service';
@@ -12,8 +12,8 @@ import { WishlistService } from '../wishlist.service';
 export class CartComponent implements OnInit {
 
   items;
-  checkoutForm;
-  amount;
+submitted = false;
+  userForm: FormGroup;
 
   constructor(
     private cartService: CartService,
@@ -23,23 +23,22 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.items = this.cartService.getItems();
-    // this.amount = this.cartService.getItems().length;
-    this.checkoutForm = this.formBuilder.group({
-      name: '',
-      phone: '',
-      email: '',
-      address: '',
+    this.userForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      address: ['', Validators.required],
       comment: ''
     })
   }
 
-  onSubmit(customerData) {
-   // Process checkout data here
-   console.warn('Your order has been submitted', customerData);
-
-   this.items = this.cartService.clearCart();
-   this.checkoutForm.reset();
- }
+  onSubmit() {
+    this.submitted = true;
+    if (this.userForm.invalid) {
+            return;
+        }
+        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.userForm.value))
+    }
 
  deleteFromCart(id) {
    this.items = this.cartService.deleteFromCart(id);
@@ -49,4 +48,5 @@ export class CartComponent implements OnInit {
    this.wishlistService.addToWishlist(product);
    this.deleteFromCart(product.id);
  }
+
 }

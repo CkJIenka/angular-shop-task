@@ -3,12 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-
+import { MatDialog, MatDialogConfig } from "@angular/material";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Product } from '../products';
-// import { PRODUCTS } from '../mock-product';
-import { CartService } from '../cart.service';
+
 import { WishlistService } from '../wishlist.service';
 import { ProductsService } from '../products.service';
+import {DialogComponent } from '../dialog/dialog.component';
 
 
 @Component({
@@ -22,10 +24,11 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cartService: CartService,
+    // private cartService: CartService,
     private wishlistService: WishlistService,
     private productsService: ProductsService,
     private http: HttpClient,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -37,20 +40,19 @@ export class ProductListComponent implements OnInit {
       .subscribe(products => this.products = products);
   }
 
-  // addToCart(product) {
-  //   this.cartService.addToCart( product as Product)
-  //     .subscribe(hero => {
-  //       this.cart.push(product);
-  //     });
-  // }
-
-  addToCart(product) {
-    this.cartService.addToCart(product);
-  }
-
-
   addToWishlist(product) {
     this.wishlistService.addToWishlist(product);
-  }
+      }
+
+  openDialog(product) {
+
+      const dialogConfig = new MatDialogConfig();
+
+      dialogConfig.autoFocus = true;
+
+      dialogConfig.data = {product}
+
+      this.dialog.open(DialogComponent, dialogConfig);
+    }
 
 }
