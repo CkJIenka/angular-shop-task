@@ -8,7 +8,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
 // import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { MatDialogModule } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { Subscription } from 'rxjs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

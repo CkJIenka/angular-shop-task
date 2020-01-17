@@ -4,8 +4,10 @@
     <img src={{product.img}} alt="Iphone">
     <p>{{product.name}}</p>
     <p>{{product.price+' руб'}}</p>
-    <button (click)="openDialog(product)">В корзину</button>
-    <button (click)="addToWishlist(product)">В избранное</button>
+    <div class="buttons">
+      <button class="cart-button" (click)="openDialog(product)">В корзину</button>
+      <button class="wishlist" (click)="addToWishlist(product)"></button>
+    </div>
   </div>
 
 </div>

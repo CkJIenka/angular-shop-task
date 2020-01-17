@@ -10,7 +10,59 @@
   align-items: center;
 }
 
-a {
-  margin: 5px;
-  border-right: 1px solid #d8d8d8;
+.nav button {
+  border: none;
+}
+
+.info {
+  position: relative;
+  font-weight: normal;
+  display: flex;
+}
+
+.wishlist {
+  height: 40px;
+  border: none;
+}
+
+.cart-info {
+  background: url('/assets/images/supermarket.png') no-repeat 1px;
+  padding-left: 40px;
+  padding-top: 2px;
+}
+
+.wishlist::before {
+  content: "";
+  display: block;
+  background: url('/assets/images/wishlist.png') no-repeat;
+  width: 40px;
+  height: 40px;
+  float: left;
+  position: relative;
+  top: -5px;
+}
+
+.pop-up {
+  position: absolute;
+  top: 40px;
+  width: 300px;
+  border: 1px solid #aeaeae;
+  z-index: 1;
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+
+.pop-up button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.preview {
+  width: 100px;
+}
+
+.invisible {
+  display:none;
 }

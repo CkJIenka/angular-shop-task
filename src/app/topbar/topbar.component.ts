@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { WishlistService } from '../wishlist.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-topbar',
@@ -9,16 +11,37 @@ import { WishlistService } from '../wishlist.service';
 })
 export class TopbarComponent implements OnInit {
 
-  amountWishlist=0;
+  visibility: boolean = true;
+  wishlistItems;
+  cartItems;
+  cartAmount: Subscription;
+  cartSumm: Subscription;
 
   constructor(
     private wishlistService: WishlistService,
-  ) { }
+    private cartService: CartService,
+  ) {
+    this.cartAmount = this.cartService.getAmount().
+      subscribe(cartAmount => {
+        this.cartAmount = cartAmount });
+
+    this.cartSumm = this.cartService.getSumm().
+      subscribe(cartSumm => {
+        this.cartSumm = cartSumm});
+    }
+
 
   ngOnInit() {
+    this.wishlistItems = this.wishlistService.getItems();
+    this.cartItems = this.cartService.getItems();
   }
 
-  recountWishlistAmount(count) {
-    this.amountWishlist+=count;
-  }
+  ngOnDestroy(): void {
+      this.cartAmount.unsubscribe();
+      this.cartSumm.unsubscribe();
+   }
+
+  toggle(){
+        this.visibility=!this.visibility;
+    }
 }

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from "@angular/material";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { WishlistService } from '../wishlist.service';
 import { CartService } from '../cart.service';
+import { DialogComponent } from '../dialog/dialog.component';
 
 
 @Component({
@@ -10,10 +14,15 @@ import { CartService } from '../cart.service';
   styleUrls: ['./wish-list.component.css']
 })
 export class WishListComponent implements OnInit {
+
   items;
+  amount;
+  products;
+
   constructor(
     private wishlistService: WishlistService,
-    private cartService: CartService
+    private cartService: CartService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -24,8 +33,14 @@ export class WishListComponent implements OnInit {
     this.items = this.wishlistService.deleteFromWishlist(id);
   }
 
-  addToCart(product) {
-    this.cartService.addToCart(product);
-    this.deleteFromWishlist(product.id);
+  openDialog(item) {
+    let product=item;
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {product}
+
+    this.dialog.open(DialogComponent, dialogConfig);
   }
 }

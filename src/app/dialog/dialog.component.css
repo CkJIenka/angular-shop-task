@@ -2,6 +2,7 @@
   width: 400px;
 }
 
+
 mat-dialog-content {
   font-weight: bold;
 }
@@ -33,12 +34,17 @@ button {
   border-radius: 10px;
   color: white;
   width: 300px;
-  margin: 0 auto 40px auto;
+  margin-bottom:  40px;
+  margin-left: 15px;
   font-size: 100%;
 }
 
 button:hover {
   background-color: #52a832;
+}
+
+.cart-button::before {
+  left: 30px;
 }
 
 .closeButton {

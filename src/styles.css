@@ -18,14 +18,13 @@ h3 {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-
-
 .product-item {
   text-align: center;
 }
 
 button {
   background-color: #d8d8d8;
+  height: 40px;
   font-weight: bold;
   padding: 10px;
   border-radius: 10px;
@@ -42,11 +41,14 @@ button:active {
   opacity: 0.5;
 }
 
-/* button:before {
+.cart-button:before {
   content: "";
   display: block;
-  background: url('/assets/images/shopicon.png') no-repeat;
+  background: url('/assets/images/supermarket.png') no-repeat;
   width: 40px;
-  height: 35px;
+  height: 40px;
   float: left;
-} */
+  position: relative;
+  top: -5px;
+  right: 5px;
+}

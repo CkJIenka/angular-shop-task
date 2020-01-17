@@ -1,9 +1,10 @@
-<h3>Корзина <i>{{ amount }}</i></h3>
+<h3>Корзина</h3>
 
 <div *ngFor="let item of items">
   <span>{{ item.name }}</span>
   <span>{{ item.price+' руб'  }}</span>
-  <input type="number"  value="1" min="1">
+  <span>{{ item.price * item.amount +' руб' }}</span>
+  <input type="number"  value="{{ item.amount }}" min="1" (change)="recount($event, item.id)">
   <button (click)="addToWishlist(item)">В избранное</button>
   <button (click)="deleteFromCart(item.id)">Удалить</button>
 </div>
@@ -11,23 +12,35 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <fieldset>
     <label for="name">ФИО:</label>
-    <input type="text" formControlName="name" id="name" required>
+    <input type="text" formControlName="name" id="name">
   </fieldset>
+  <span *ngIf="(name.dirty || name.touched) && name.invalid && name.errors.required">
+    Необходимо заполнить ФИО.
+  </span>
   <fieldset>
     <label for="phone">Номер телефона:</label>
-    <input type="text" formControlName="phone" id="phone" placeholder="+7 (XXX) XXX-XX-XX" pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}" required>
+    <input type="number" formControlName="phone" id="phone" placeholder="+7XXXXXXXXXX">
   </fieldset>
+  <span *ngIf="(phone.dirty || phone.touched) && phone.invalid && phone.errors.required">
+    Необходимо указать номер телефона.
+  </span>
   <fieldset>
     <label for="email">Email:</label>
-    <input type="email" formControlName="email" id="email" required>
+    <input type="email" formControlName="email" id="email">
   </fieldset>
+  <span *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.email">
+    Неправильно указан email.
+  </span>
   <fieldset>
     <label for="address">Адрес доставки:</label>
-    <input type="text" formControlName="address" id="adress" required>
+    <input type="text" formControlName="address" id="adress">
   </fieldset>
+  <span *ngIf="(address.dirty || address.touched) && address.invalid && address.errors.required">
+    Необходимо указать адрес доставки.
+  </span>
   <fieldset>
     <label for="comment">Комментарии:</label>
     <textarea id="comment" formControlName="comment"></textarea>
   </fieldset>
-  <button type="submit" class="submit">Оформить заказ</button>
+  <button type="submit" class="submit" [disabled]="userForm.invalid">Оформить заказ</button>
 </form>

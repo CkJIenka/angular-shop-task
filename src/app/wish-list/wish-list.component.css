@@ -5,3 +5,9 @@ img {
 p {
   font-weight: bold;
 }
+
+.delete {
+  margin-left: 5px;
+  position: relative;
+  top: 2px;
+}

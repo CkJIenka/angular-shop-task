@@ -10,25 +10,16 @@ export class WishlistService {
   constructor() { }
 
   addToWishlist(product) {
-    let flag=false;
-    let items=this.items;
-    items.forEach(function(item) {
-      if(product.id == item.id) {
-        flag=true;
-      }
-    });
-    if (!flag) {
+      let date=new Date();
+      product.date=date;
       this.items.push(product);
-      }
+      this.items.sort(function(a, b) {
+        return b.date-a.date
+      })
   }
 
   getItems() {
-    return this.items;
-  }
-
-  clearWishlist() {
-    this.items = [];
-    return this.items;
+     return this.items;
   }
 
   deleteFromWishlist(id) {

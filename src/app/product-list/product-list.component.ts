@@ -6,11 +6,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Product } from '../products';
 
+import { Product } from '../products';
 import { WishlistService } from '../wishlist.service';
+import { CartService } from '../cart.service';
 import { ProductsService } from '../products.service';
-import {DialogComponent } from '../dialog/dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 
 
 @Component({
@@ -24,9 +25,9 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    // private cartService: CartService,
     private wishlistService: WishlistService,
     private productsService: ProductsService,
+    private cartService: CartService,
     private http: HttpClient,
     private dialog: MatDialog,
   ) { }
@@ -41,11 +42,19 @@ export class ProductListComponent implements OnInit {
   }
 
   addToWishlist(product) {
-    this.wishlistService.addToWishlist(product);
+    let items = this.wishlistService.getItems();
+    let flag = false;
+    items.forEach(function(item) {
+      if(product.id == item.id) {
+        flag=true;
       }
+    });
+    if (!flag) {
+      this.wishlistService.addToWishlist(product);
+    }
+  }
 
   openDialog(product) {
-
       const dialogConfig = new MatDialogConfig();
 
       dialogConfig.autoFocus = true;

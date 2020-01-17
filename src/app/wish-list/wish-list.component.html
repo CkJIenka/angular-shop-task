@@ -1,13 +1,13 @@
 <h3>Список желаний</h3>
 
 <div class="container">
-
+  {{ amount }}
   <div class="product-item" *ngFor="let item of items">
     <img src={{item.img}} alt="Iphone">
     <p>{{item.name}}</p>
     <p>{{item.price+' руб'}}</p>
-    <button (click)="addToCart(item)">В корзину</button>
-    <button (click)="deleteFromWishlist(item.id)">Удалить из избранного</button>
+    <button class="cart-button" (click)="openDialog(item)">В корзину</button>
+    <button class="delete" (click)="deleteFromWishlist(item.id)">Удалить</button>
   </div>
 
 </div>

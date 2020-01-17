@@ -12,8 +12,9 @@ import { WishlistService } from '../wishlist.service';
 export class CartComponent implements OnInit {
 
   items;
-submitted = false;
+  order;
   userForm: FormGroup;
+  amount;
 
   constructor(
     private cartService: CartService,
@@ -26,27 +27,54 @@ submitted = false;
     this.userForm = this.formBuilder.group({
       name: ['', Validators.required],
       phone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', Validators.email],
       address: ['', Validators.required],
       comment: ''
     })
   }
 
+  get name() {
+    return this.userForm.get('name');
+  }
+  get phone() {
+    return this.userForm.get('phone');
+  }
+  get email() {
+    return this.userForm.get('email');
+  }
+  get address() {
+    return this.userForm.get('address');
+  }
+
   onSubmit() {
-    this.submitted = true;
     if (this.userForm.invalid) {
-            return;
+      console.log("error")
+          return;
         }
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.userForm.value))
-    }
+    this.cartService.clearCart();
+    alert('Order: ' + JSON.stringify(this.items) + '\n\n' + JSON.stringify(this.userForm.value));
+  }
+
+  recount(event: any, id) {
+    this.amount = event.target.value;
+    this.items = this.cartService.recount(this.amount, id);
+  }
 
  deleteFromCart(id) {
    this.items = this.cartService.deleteFromCart(id);
  }
 
  addToWishlist(product) {
-   this.wishlistService.addToWishlist(product);
-   this.deleteFromCart(product.id);
+   let items = this.wishlistService.getItems();
+   let flag = false;
+   items.forEach(function(item) {
+     if(product.id == item.id) {
+       flag=true;
+     }
+   });
+   if (!flag) {
+     this.wishlistService.addToWishlist(product);
+     this.deleteFromCart(product.id);
+   }
  }
-
 }

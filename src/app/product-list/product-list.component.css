@@ -5,3 +5,17 @@ img {
 p {
   font-weight: bold;
 }
+
+.wishlist {
+  margin-left: 5px;
+  width: 50px;
+  height: 40px;
+  background: url('/assets/images/wishlist.png') no-repeat center #d8d8d8;
+  position: relative;
+  top: 5px;
+}
+
+.wishlist:hover {
+  cursor: pointer;
+  background-color: #aeaeae;
+}
