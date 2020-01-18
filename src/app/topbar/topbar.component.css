@@ -26,7 +26,7 @@
 }
 
 .cart-info {
-  background: url('/assets/images/supermarket.png') no-repeat 1px;
+  background: url('/./assets/images/supermarket.png') no-repeat 1px;
   padding-left: 40px;
   padding-top: 2px;
 }
@@ -34,7 +34,7 @@
 .wishlist::before {
   content: "";
   display: block;
-  background: url('/assets/images/wishlist.png') no-repeat;
+  background: url('/./assets/images/wishlist.png') no-repeat;
   width: 40px;
   height: 40px;
   float: left;
