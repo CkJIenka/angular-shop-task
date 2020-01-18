@@ -25,6 +25,12 @@
         <span>На сумму <strong>{{ cartSumm+' руб' }}</strong></span>
       </div>
 
+      <div class="cart-info" *ngIf="!(cartAmount>0)">
+      <span>В корзине <strong>0 товаров</strong>
+      </span> <br>
+        <span>На сумму <strong>0 руб</strong></span>
+      </div>
+
 
 
   </div>
